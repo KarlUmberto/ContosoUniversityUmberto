@@ -1,0 +1,46 @@
+﻿@model IEnumerable<ContosoUniversityUmberto.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<h2>Idnex</h2>
+<p>
+    <a asp-action="Create">Create a new a</a>
+</p>
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstMidName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnrollmentDate)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstMidName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnrollmentDate)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-itemid="@item.ID">Editeeri</a>
+                    <a asp-action="Details" asp-route-itemid="@item.ID">Detailid</a>
+                    <a asp-action="Delete" asp-route-itemid="@item.ID">Deliit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
