@@ -1,0 +1,41 @@
+﻿@model ContosoUniversityUmberto.Models.Student
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Create</h4>
+<hr />
+<div  class="row">
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="LastName" class="control-label"></label>
+            <label asp-for="LastName" class="form-control"></label>
+            <label asp-validation-for="LastName" class="text-danger"></label>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirstMidName" class="control-label"></label>
+            <label asp-for="FirstMidName" class="form-control"></label>
+            <label asp-validation-for="LastName" class="text-danger"></label>
+        </div>
+        <div class="form-group">
+            <label asp-for="EnrollmentDate" class="control-label"></label>
+            <label asp-for="EnrollmentDate" class="form-control"></label>
+            <label asp-validation-for="LastName" class="text-danger"></label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary"/>
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">"Back to list"></a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationsScriptsPartial");
+    }
+}
