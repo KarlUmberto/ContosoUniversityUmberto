@@ -74,7 +74,7 @@ namespace ContosUniversityHannes.Controllers
             }
 
             var student = await _context.Students.FindAsync(id);
-            if (student == null) 
+            if (student == null)
             {
                 return NotFound();
             }
@@ -105,8 +105,8 @@ namespace ContosUniversityHannes.Controllers
         }
         public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
         {
-            if (id == null) 
-            { 
+            if (id == null)
+            {
                 return NotFound();
             }
             var student = await _context.Students.AsNoTracking().FirstOrDefaultAsync(s => s.ID == id);
@@ -118,9 +118,29 @@ namespace ContosUniversityHannes.Controllers
             if (saveChangesError.GetValueOrDefault())
             {
                 ViewData["ErrorMessage"] =
-                "Deletion has failed, please try again, and if the problem persists " + "see your system administrator"; 
+                "Deletion has failed, please try again, and if the problem persists " + "see your system administrator";
             }
             return View(student);
+
+
+        }
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var student = await _context.Students.FindAsync(id);
+
+            try
+            {
+                _context.Students.Remove(student);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (DbUpdateException)
+            {
+
+                return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
+            }
         }
     }
 }
