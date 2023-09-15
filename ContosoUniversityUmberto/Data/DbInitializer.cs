@@ -167,8 +167,7 @@ namespace ContosoUniversityUmberto.Data
             {
                 context.CourseAssignments.Add(ci);
             }
-
-            var courses = new Course[];
+            context.SaveChanges();
 
            
         }
