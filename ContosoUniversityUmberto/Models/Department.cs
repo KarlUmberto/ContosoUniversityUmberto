@@ -15,13 +15,13 @@ namespace ContosoUniversityUmberto.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}",
             ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
+        [ForeignKey(nameof(Instructor.ID))]
         public int? InstructorID { get; set; }
 
-        public Instructor Instructor { get; set; }
         [Timestamp]
         public byte RowVersion { get; set; }
         public Instructor Administrator { get; set; }
-
+        public ICollection<Course> Courses { get; set; }
 
 
     }
